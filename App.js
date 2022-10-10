@@ -1,20 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+import { useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
+import { baseUrl } from "./api/baseUrl";
+import Header from "./components/Header";
+import BottomTab from "./navigator/BottomTab";
+import TopTab from "./navigator/TopTab";
+import CoinsList from "./screens/Home/CoinsList";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <>
+      <BottomTab />
       <StatusBar style="auto" />
-    </View>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
