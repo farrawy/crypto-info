@@ -34,7 +34,8 @@ const TrendingCoinsList = () => {
 
   const fetchCoin = async () => {
     const url = `${baseUrl}/search/trending`;
-    const response = await axios.get(url);
+    const response = await axios
+      .get(url, { responseType: "json" })
     const newRes = response.data.coins;
     const new_newRes = newRes.map((res) => {
       return res.item;

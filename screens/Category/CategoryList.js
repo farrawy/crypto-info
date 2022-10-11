@@ -14,11 +14,11 @@ import axios from "axios";
 import { baseUrl } from "../../api/baseUrl";
 import Category from "./Category";
 
-
 const CategoryList = () => {
+
   return (
     <View>
-      <Text>CategoryList</Text>
+      <Category />
     </View>
   );
 };

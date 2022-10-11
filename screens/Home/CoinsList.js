@@ -44,7 +44,7 @@ const CoinsList = () => {
   const fetchCoin = async () => {
     const url = `${baseUrl}/coins/markets?vs_currency=usd`;
 
-    const response = await axios.get(url);
+    const response = await axios.get(url, { responseType: "json" });
 
     setCoin(response.data);
   };
