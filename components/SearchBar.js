@@ -5,11 +5,15 @@ import { Searchbar, TextInput } from "react-native-paper";
 import { baseUrl } from "../api/baseUrl";
 import axios from "axios";
 import Term from "./Term";
+import { FlashList } from "@shopify/flash-list";
+import Coins from "../screens/Home/Coins";
+import SearchComponents from "./SearchComponents";
 
 const SearchBar = () => {
   const [data, setData] = useState([]);
   const [term, setTerm] = useState(null);
   const [query, setQuery] = useState("");
+
 
   // TODO useEffect render on onChangeSearch
   useEffect(() => {
@@ -20,7 +24,6 @@ const SearchBar = () => {
     axios
       .get(`${baseUrl}/search?query=${term}`)
       .then((res) => {
-        // console.log("res =>", res?.config);
         setData(res?.data?.coins);
       })
       .catch((error) => {
@@ -33,7 +36,12 @@ const SearchBar = () => {
       <View style={{ padding: 15 }}>
         <Searchbar placeholder="Search" onChangeText={setTerm} value={term} />
       </View>
-      <FlatList data={data} renderItem={({ item }) => <Term data={item} />} />
+      <FlashList
+        estimatedItemSize={100}
+        data={data}
+        renderItem={({ item }) => <SearchComponents item={item} />}
+        key={data.symbol}
+      />
       {/* <TrendingCoinsList /> */}
     </SafeAreaView>
   );

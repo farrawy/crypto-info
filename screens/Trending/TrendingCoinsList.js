@@ -12,6 +12,7 @@ import { useScrollToTop } from "@react-navigation/native";
 import { baseUrl } from "../../api/baseUrl";
 import axios from "axios";
 import TrendingCoins from "./TrendingCoins";
+import { FlashList } from "@shopify/flash-list";
 
 const TrendingCoinsList = () => {
   const [trendingCoin, setTrendingCoin] = useState([]);
@@ -34,8 +35,7 @@ const TrendingCoinsList = () => {
 
   const fetchCoin = async () => {
     const url = `${baseUrl}/search/trending`;
-    const response = await axios
-      .get(url, { responseType: "json" })
+    const response = await axios.get(url, { responseType: "json" });
     const newRes = response.data.coins;
     const new_newRes = newRes.map((res) => {
       return res.item;
@@ -45,7 +45,7 @@ const TrendingCoinsList = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <FlatList
+      <FlashList
         ref={ref}
         data={trendingCoin}
         renderItem={renderItem}
@@ -54,6 +54,7 @@ const TrendingCoinsList = () => {
         initialNumToRender={8}
         removeClippedSubviews={true}
         maxToRenderPerBatch={15}
+        estimatedItemSize={100}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }

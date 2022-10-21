@@ -14,10 +14,12 @@ import { useScrollToTop } from "@react-navigation/native";
 import axios from "axios";
 import Coins from "./Coins";
 import GeneralInfo from "../../components/GeneralInfo";
+import { SAMPLE_DATA } from "../../assets/dummy/btc-chart";
+import { FlashList } from "@shopify/flash-list";
 
 var numberAbb = require("number-abbreviate");
 
-const CoinsList = () => {
+const CoinsList = (props) => {
   const [coin, setCoin] = useState([]);
   const [globalMarketCap, setGlobaMarketCap] = useState([]);
   const [globalPer, setGlobalPerc] = useState([]);
@@ -42,7 +44,7 @@ const CoinsList = () => {
   }, []);
 
   const fetchCoin = async () => {
-    const url = `${baseUrl}/coins/markets?vs_currency=usd`;
+    const url = `${baseUrl}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=true&price_change_percentage=7d`;
 
     const response = await axios.get(url, { responseType: "json" });
 
@@ -62,14 +64,15 @@ const CoinsList = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, padding: 0, margin: 0 }}>
-      <FlatList
-        // navigation={props.navigation}
+      <FlashList
+        navigation={props.navigation}
         ref={ref}
         data={coin}
         renderItem={renderItem}
         key={coin.id}
         keyExtractor={(item) => item.id}
         initialNumToRender={10}
+        estimatedItemSize={100}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }

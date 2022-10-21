@@ -4,17 +4,22 @@ import React from "react";
 const TrendingCoins = ({ trending_coins }) => {
   return (
     <TouchableOpacity style={styles.card}>
-      <Text
-        style={[
-          styles.text,
-          { alignSelf: "center", padding: 10, paddingRight: 20 },
-        ]}
-      >
-        {trending_coins.market_cap_rank}
-      </Text>
-      <Image source={{ uri: trending_coins.large }} style={styles.image} />
-      <Text style={[styles.text]}>{trending_coins.symbol}</Text>
-      <Text style={[styles.text]}>${trending_coins.price_btc}</Text>
+      {trending_coins.price_btc && (
+        <>
+          <Text
+            style={[
+              styles.text,
+              { alignSelf: "center", padding: 10, paddingRight: 20 },
+            ]}
+          >
+            {trending_coins.market_cap_rank}
+          </Text>
+          <Image source={{ uri: trending_coins.large }} style={styles.image} />
+          <Text style={[styles.text]}>{trending_coins.symbol}</Text>
+
+          <Text style={[styles.text]}>${trending_coins.price_btc}</Text>
+        </>
+      )}
     </TouchableOpacity>
   );
 };

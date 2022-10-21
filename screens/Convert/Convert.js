@@ -1,10 +1,16 @@
 import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import { IconButton, TextInput } from "react-native-paper";
 import SelectDropdown from "react-native-select-dropdown";
 import { Octicons } from "@expo/vector-icons";
 import { baseUrl } from "../../api/baseUrl";
 import axios from "axios";
+import { useFocusEffect } from "@react-navigation/native";
 
 const coins = ["Bitcoin", "Ethereum", "Cardano", "Doge", "Shiba"];
 const currency = ["USD", "EUR", "SAR", "TRY"];
@@ -43,7 +49,7 @@ const Convert = () => {
     });
     setCoinPrice(mapped_response_coin_price.current_price);
 
-    const name = coinName[20];
+    const name = coinName[30];
     const price = newResponse.find((element) => element.id === name);
     setNewCoinPrice(price);
 
