@@ -1,5 +1,5 @@
 # crypto-info
-![crypto-info](https://asset.cloudinary.com/dqoijovud/cf078e803aa46689465eb4417452da14)
+![crypto-info](https://res.cloudinary.com/dqoijovud/image/upload/v1666353610/1_t42lek.png)
 
 ## This is the Frontend part, Backend is coming later
 ## Facebook Clone built using React Native and Expo-Cli
